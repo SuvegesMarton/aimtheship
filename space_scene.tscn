@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8gilr3ga1ycp"]
+
+[ext_resource type="PackedScene" uid="uid://coht6ka2w0nim" path="res://rocket.tscn" id="1_v730a"]
+
+[node name="space_scene" type="Node2D"]
+
+[node name="rocket" parent="." instance=ExtResource("1_v730a")]
