@@ -1,15 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8gilr3ga1ycp"]
+[gd_scene load_steps=3 format=3 uid="uid://b8gilr3ga1ycp"]
 
-[ext_resource type="Script" path="res://scripts/space_scene.gd" id="1_2inpw"]
-[ext_resource type="PackedScene" uid="uid://bx1iq3jsbsw2b" path="res://scenes/rocket.tscn" id="1_v730a"]
-[ext_resource type="PackedScene" uid="uid://dtfw3iwu4aemy" path="res://scenes/meteorite.tscn" id="2_nf5a7"]
+[ext_resource type="Script" path="res://scripts/roundManager.gd" id="1_2inpw"]
 [ext_resource type="PackedScene" uid="uid://bn6ave5tlaqes" path="res://scenes/background.tscn" id="4_opyro"]
 
 [node name="round_manager" type="Node2D"]
 script = ExtResource("1_2inpw")
-
-[node name="rocket" parent="." instance=ExtResource("1_v730a")]
-
-[node name="meteorite" parent="." instance=ExtResource("2_nf5a7")]
 
 [node name="background" parent="." instance=ExtResource("4_opyro")]

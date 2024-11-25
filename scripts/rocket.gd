@@ -1,7 +1,4 @@
-extends Node2D
-
-@export var velocity = Vector2(-20, 50)
-var weight = 200000#kg
+extends "res://scripts/gravity.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +9,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position.x += velocity[0]*delta
 	position.y += velocity[1]*delta
-	velocity.x += 8*delta
-	velocity.y += -8*delta
+	update_velocity(delta)
 	rotation = velocity.angle()

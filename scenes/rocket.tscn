@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://lxi16ig0ryni" path="res://images/rocket.png" id="2_l6iya"]
 
 [node name="rocket" type="Node2D"]
-position = Vector2(600, 300)
 script = ExtResource("1_1exku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
