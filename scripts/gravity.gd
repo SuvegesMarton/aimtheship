@@ -11,14 +11,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x += velocity.x*delta
-	position.y += velocity.y*delta
-	update_velocity(delta)
-	forces = 0
-	rotation = velocity.angle()
+	pass
 
 func update_velocity(delta: float) -> void:
 	if weight == 0:
 		return
 	velocity.x += (forces.x / weight) * delta
 	velocity.y += (forces.y / weight) * delta
+	forces = Vector2.ZERO
