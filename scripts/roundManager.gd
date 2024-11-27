@@ -9,33 +9,31 @@ var physicsElements = []
 var rocket
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	rocket = RocketScene.instantiate() as Node2D
-	rocket.position = Vector2(300, 300)
-	rocket.velocity = Vector2(0, 60)
-	rocket.weight = 1
-	add_child(rocket)
-	physicsElements.append(rocket)
+	load_level("levelTest")
 	
-	var m1 = MeteoriteScene.instantiate() as Node2D
-	m1.position = Vector2(500, 300)
-	m1.velocity = Vector2(0, 0)
-	m1.weight = 10000000000
-	add_child(m1)
-	physicsElements.append(m1)
-	"""
-	var m2 = MeteoriteScene.instantiate() as Node2D
-	m2.position = Vector2(500, 300)
-	m2.velocity = Vector2(0, 0)
-	m2.weight = 100000000
-	add_child(m2)
-	physicsElements.append(m2)
-	"""
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(rocket.velocity)
+	#print("fps: ", 1/delta)
 	calculateGravityEffects(delta)
 	
 
+func load_level(level_name: String) -> void:
+	var config = ConfigFile.new()
+	# Load the file. If the file didn't load, ignore it.
+	if config.load("res://resources/levels/"+level_name+".cfg") != OK:
+		return
+	# Iterate over all sections.
+	for item in config.get_sections():
+		print(config.get_sections())
+		# Fetch the data for each section.
+		var player_name = config.get_value(item, "ala")
+		print(player_name)
+		var player_score = config.get_value(item, "sala")
+		print(player_score)
+		var player_score2 = config.get_value(item, "dala")
+		print(player_score2)
+
+#calculate gravity on all physics-affected objects
 func calculateGravityEffects(delta:float) -> void:
 	var arr_size = physicsElements.size()
 	for i in range(arr_size):
@@ -51,7 +49,6 @@ func calculateGravityForce(outer: Node2D, inner: Node2D) -> Vector2:
 	var distanceSquared = direction.x**2+direction.y**2
 	#gravity equation
 	var forceMagnitude = (G*outer.weight*inner.weight)/distanceSquared
-	print(forceMagnitude)
 	return direction.normalized() * forceMagnitude
 	
 	
