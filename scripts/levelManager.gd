@@ -5,7 +5,7 @@ var MeteoriteScene = preload("res://scenes/meteorite.tscn")
 
 var levelName = "levelTest"
 
-var G = 6.67 * (10.0 ** -3)
+var G = 6.67 * (10.0 ** -2)
 
 var physicsElements = []
 var rocket = RocketScene.instantiate()

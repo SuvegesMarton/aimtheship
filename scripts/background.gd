@@ -18,7 +18,8 @@ func _ready():
 
 func create_background():
 	background = ColorRect.new()
-	background.color = Color.BLACK
+	var gray = 0.1
+	background.color = Color(gray, gray, gray)
 	update_background_size()
 	background.z_index = -10  # Push it behind everything else
 	add_child(background)
