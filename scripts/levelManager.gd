@@ -2,16 +2,22 @@ extends Node2D
 
 var RocketScene = preload("res://scenes/rocket.tscn")
 var MeteoriteScene = preload("res://scenes/meteorite.tscn")
+var EndpointScene = preload("res://scenes/endpoint.tscn")
 
 var levelName = "levelTest"
 
-var G = 6.67 * (10.0 ** -2)
+var G=6.67e-2
+var dist_coeff=1.7
 
 var physicsElements = []
 var rocket = RocketScene.instantiate()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	load_level(levelName)
+	load_level()
+	var ep = EndpointScene.instantiate()
+	ep.position = Vector2(800, 100)
+	add_child(ep)
+	print(ep)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -19,13 +25,18 @@ func _process(delta: float) -> void:
 	calculateGravityEffects(delta)
 	
 
-func load_level(levelName: String) -> void:
+func load_level() -> void:
 	var config = ConfigFile.new()
 	# Load the file. If the file didn't load, ignore it.
 	if config.load("res://resources/levels/"+levelName+".cfg") != OK: return
 	# Iterate over all sections.
 	for item in config.get_sections():
 		match item:
+			"physics":
+				#G used in the gravity equation set to an arbitrary value which works fine
+				G = 6.67 * (10.0 ** -2)
+				#d**dist_coeff in gravity equation instead of d**2 to customize gravity function profile
+				dist_coeff  = 1.7
 			"rocket":
 				loadPhysicsAttributesFromFile(config, item, rocket)
 			_:
@@ -54,7 +65,7 @@ func calculateGravityForce(outer: Node2D, inner: Node2D) -> Vector2:
 	var direction = Vector2(inner.position.x-outer.position.x, inner.position.y-outer.position.y)
 	var distanceSquared = direction.x**2+direction.y**2
 	#gravity equation
-	var forceMagnitude = (G*outer.weight*inner.weight)/distanceSquared
+	var forceMagnitude = (G*outer.weight*inner.weight)/(distanceSquared**(dist_coeff/2))
 	return direction.normalized() * forceMagnitude
 	
 	
