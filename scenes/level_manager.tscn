@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8gilr3ga1ycp"]
+
+[ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_cnx1b"]
+[ext_resource type="PackedScene" uid="uid://bn6ave5tlaqes" path="res://scenes/background.tscn" id="2_y273j"]
+
+[node name="round_manager" type="Node2D"]
+script = ExtResource("1_cnx1b")
+
+[node name="background" parent="." instance=ExtResource("2_y273j")]

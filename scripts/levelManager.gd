@@ -20,29 +20,24 @@ func _process(delta: float) -> void:
 	
 
 func load_level(levelName: String) -> void:
-	print(levelName)
 	var config = ConfigFile.new()
 	# Load the file. If the file didn't load, ignore it.
 	if config.load("res://resources/levels/"+levelName+".cfg") != OK: return
 	# Iterate over all sections.
 	for item in config.get_sections():
-		print(item)
 		match item:
 			"rocket":
-				rocket.position = config.get_value(item, "pos")
-				rocket.velocity = config.get_value(item, "vel")
-				rocket.weight = config.get_value(item, "weight")
-				add_child(rocket)
-				physicsElements.append(rocket)
+				loadPhysicsAttributesFromFile(config, item, rocket)
 			_:
 				var met = MeteoriteScene.instantiate()
-				met.position = config.get_value(item, "pos")
-				met.velocity = config.get_value(item, "vel")
-				met.weight = config.get_value(item, "weight")
-				add_child(met)
-				physicsElements.append(met)
+				loadPhysicsAttributesFromFile(config, item, met)
 				
-
+func loadPhysicsAttributesFromFile(config, item, object):
+	object.position = config.get_value(item, "pos")
+	object.velocity = config.get_value(item, "vel")
+	object.weight = config.get_value(item, "weight")
+	add_child(object)
+	physicsElements.append(object)
 
 #calculate gravity on all physics-affected objects
 func calculateGravityEffects(delta:float) -> void:
