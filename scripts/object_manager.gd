@@ -18,10 +18,16 @@ func _ready() -> void:
 	ep.position = Vector2(800, 100)
 	add_child(ep)
 	
+	start_movement()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#print("fps: ", 1/delta)
 	calculateGravityEffects(delta)
+
+func start_movement() -> void:
+	for obj in physicsElements:
+		obj.movement_enabled = true
 
 func load_level() -> void:
 	var config = ConfigFile.new()
