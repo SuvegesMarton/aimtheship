@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8gilr3ga1ycp"]
+[gd_scene load_steps=4 format=3 uid="uid://b8gilr3ga1ycp"]
 
 [ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_cnx1b"]
 [ext_resource type="PackedScene" uid="uid://bn6ave5tlaqes" path="res://scenes/background.tscn" id="2_y273j"]
+[ext_resource type="Script" path="res://scripts/object_manager.gd" id="3_313is"]
 
-[node name="round_manager" type="Node2D"]
+[node name="levelManager" type="Node2D"]
 script = ExtResource("1_cnx1b")
 
 [node name="background" parent="." instance=ExtResource("2_y273j")]
+
+[node name="objectManager" type="Node2D" parent="."]
+script = ExtResource("3_313is")
