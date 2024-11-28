@@ -17,9 +17,7 @@ func _ready() -> void:
 	var ep = EndpointScene.instantiate()
 	ep.position = Vector2(800, 100)
 	add_child(ep)
-	
-	start_movement()
-	
+	#start_movement()	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#print("fps: ", 1/delta)
