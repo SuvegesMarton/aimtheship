@@ -2,17 +2,21 @@ extends Node2D
 
 var RocketScene = preload("res://scenes/rocket.tscn")
 var MeteoriteScene = preload("res://scenes/meteorite.tscn")
+var EndpointScene = preload("res://scenes/endpoint.tscn")
 
 var levelName = "levelTest"
-
-var G = 6.67 * (10.0 ** -2)		#G used in the gravity equation set to an arbitrary value which works fine
-var dist_coeff  = 1.7			#d**dist_coeff in gravity equation instead of d**2 to customize gravity function profile
+var G=6.67e-2
+var dist_coeff=1.7
 
 var physicsElements = []
 var rocket = RocketScene.instantiate()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_level()
+	var ep = EndpointScene.instantiate()
+	ep.position = Vector2(800, 100)
+	add_child(ep)
+	print(ep)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,6 +31,11 @@ func load_level() -> void:
 	# Iterate over all sections.
 	for item in config.get_sections():
 		match item:
+			"physics":
+				#G used in the gravity equation set to an arbitrary value which works fine
+				G = 6.67 * (10.0 ** -2)
+				#d**dist_coeff in gravity equation instead of d**2 to customize gravity function profile
+				dist_coeff  = 1.7
 			"rocket":
 				loadPhysicsAttributesFromFile(config, item, rocket)
 			_:
