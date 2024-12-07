@@ -54,6 +54,7 @@ func loadPhysicsAttributesFromFile(config, item: String, object: Node2D) -> void
 
 #calculate gravity on all physics-affected objects
 func calculateGravityEffects(delta: float) -> void:
+	
 	var arr_size = physicsElements.size()
 	for i in range(arr_size):
 		for j in range(i+1, arr_size):
