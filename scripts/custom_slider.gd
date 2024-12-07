@@ -6,7 +6,7 @@ func _ready() -> void:
 	scale = Vector2(1,1)
 	size = Vector2(get_viewport().size.x/50,get_viewport().size.y*0.9)
 	editable = true
-	value = 50.0
+	value = max_value/3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

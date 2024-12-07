@@ -36,9 +36,9 @@ func load_level() -> void:
 		match item:
 			"physics":
 				#G used in the gravity equation set to an arbitrary value which works fine
-				G = 6.67 * (10.0 ** -2)
+				G = config.get_value(item, "G")
 				#d**dist_coeff in gravity equation instead of d**2 to customize gravity function profile
-				dist_coeff  = 1.7
+				dist_coeff  = config.get_value(item, "dist_coeff")
 			"rocket":
 				loadPhysicsAttributesFromFile(config, item, rocket)
 			_:
@@ -51,6 +51,7 @@ func loadPhysicsAttributesFromFile(config, item: String, object: Node2D) -> void
 	object.weight = config.get_value(item, "weight")
 	add_child(object)
 	physicsElements.append(object)
+
 #calculate gravity on all physics-affected objects
 func calculateGravityEffects(delta: float) -> void:
 	var arr_size = physicsElements.size()
@@ -58,12 +59,14 @@ func calculateGravityEffects(delta: float) -> void:
 		for j in range(i+1, arr_size):
 			var actingForce: Vector2 = calculateGravityForce(physicsElements[i], physicsElements[j])
 			physicsElements[i].forces += actingForce * delta
-			physicsElements[j].forces -= actingForce * delta			
+			physicsElements[j].forces -= actingForce * delta
+
 #calculate the forces acting upon "outer"
 func calculateGravityForce(outer: Node2D, inner: Node2D) -> Vector2:
 	#vector between the 2 objects
 	var direction = Vector2(inner.position.x-outer.position.x, inner.position.y-outer.position.y)
 	var distanceSquared = direction.x**2+direction.y**2
+	if distanceSquared<900: return Vector2.ZERO
 	#gravity equation
 	var forceMagnitude = (G*outer.weight*inner.weight)/(distanceSquared**(dist_coeff/2))
 	return direction.normalized() * forceMagnitude

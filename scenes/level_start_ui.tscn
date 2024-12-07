@@ -8,6 +8,8 @@
 script = ExtResource("1_sjegc")
 
 [node name="speed" parent="." instance=ExtResource("1_mhc3f")]
+max_value = 30.0
+value = 30.0
 
 [node name="direction" parent="." instance=ExtResource("1_mhc3f")]
 max_value = 360.0

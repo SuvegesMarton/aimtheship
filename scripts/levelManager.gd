@@ -15,5 +15,7 @@ func _process(_delta: float) -> void:
 			var speed_and_dir = $levelStartUI.get_values()
 			$objectManager.rocket.set_speed_and_dir(speed_and_dir[0], speed_and_dir[1])
 			if !$levelStartUI.values_under_configuration:
-				$objectManager.start_movement()
 				phase = 1
+				$objectManager.start_movement()
+		1:
+			pass
