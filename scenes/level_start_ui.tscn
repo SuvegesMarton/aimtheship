@@ -10,6 +10,7 @@ script = ExtResource("1_sjegc")
 [node name="speed" parent="." instance=ExtResource("1_mhc3f")]
 
 [node name="direction" parent="." instance=ExtResource("1_mhc3f")]
+max_value = 360.0
 
 [node name="go_button" type="Button" parent="."]
 offset_right = 8.0

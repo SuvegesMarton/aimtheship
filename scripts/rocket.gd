@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 	update_velocity(delta)
 	
 func set_speed_and_dir(speed: float, dir: float) -> void:
-	print(speed, dir)
+	#print(speed, dir)
 	pass
