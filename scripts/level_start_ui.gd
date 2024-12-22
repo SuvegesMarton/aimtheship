@@ -15,11 +15,10 @@ func _process(_delta: float) -> void:
 	pass
 
 func _start_simulation():
-	print("hahaha")
 	values_under_configuration=false
 	$speed.editable=false
 	$direction.editable=false
-	$go_button.disabled=true
+	#$go_button.disabled=true
 	
 
 func get_values():

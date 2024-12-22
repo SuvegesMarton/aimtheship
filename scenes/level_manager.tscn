@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/levelManager.gd" id="1_cnx1b"]
 [ext_resource type="PackedScene" uid="uid://bn6ave5tlaqes" path="res://scenes/background.tscn" id="2_y273j"]
-[ext_resource type="PackedScene" uid="uid://bybw7q8jqajna" path="res://scenes/object_manager.tscn" id="3_js7s3"]
-[ext_resource type="PackedScene" uid="uid://bbg7wa0rpp545" path="res://scenes/level_start_ui.tscn" id="4_t436q"]
+[ext_resource type="PackedScene" uid="uid://clhtyu1d3vs0w" path="res://scenes/object_manager.tscn" id="3_js7s3"]
+[ext_resource type="PackedScene" uid="uid://1rh21pidaxy6" path="res://scenes/level_start_ui.tscn" id="4_t436q"]
 
 [node name="levelManager" type="Node2D"]
 script = ExtResource("1_cnx1b")
