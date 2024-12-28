@@ -8,7 +8,7 @@ var G=6.67e-2
 var dist_coeff=1.7
 
 var physicsElements = []
-var rocket = RocketScene.instantiate()
+var rocket
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var ep = EndpointScene.instantiate()
@@ -24,14 +24,23 @@ func start_movement() -> void:
 	for obj in physicsElements:
 		obj.movement_enabled = true
 
-func loadPhysicsAttributesFromFile(config, item: String, object: Node2D) -> void:
-	if object==null:
+func loadPhysicsAttributesFromFile(config, item: String, object_type: int) -> void:
+	var object
+	if object_type==0:
+		rocket = RocketScene.instantiate()
+		object = rocket
+	if object_type==1:
 		object = MeteoriteScene.instantiate()
 	object.position = config.get_value(item, "pos")
 	object.velocity = config.get_value(item, "vel")
 	object.weight = config.get_value(item, "weight")
 	add_child(object)
 	physicsElements.append(object)
+	
+func deletePhysicsElements() -> void:
+	for e in physicsElements:
+		e.queue_free()
+	physicsElements = []
 
 #calculate gravity on all physics-affected objects
 func calculateGravityEffects(delta: float) -> void:

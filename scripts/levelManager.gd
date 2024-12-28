@@ -10,6 +10,9 @@ var phase = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_level()
+	$levelStartUI/button.connect("go_button_pressed", start_simulation)
+	$levelStartUI/button.connect("retry_button_pressed", restart_simulation)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -17,9 +20,6 @@ func _process(_delta: float) -> void:
 		0:
 			var speed_and_dir = $levelStartUI.get_values()
 			$objectManager.rocket.set_speed_and_dir(speed_and_dir[0], speed_and_dir[1])
-			if !$levelStartUI.values_under_configuration:
-				phase = 1
-				$objectManager.start_movement()
 		1:
 			pass
 
@@ -36,6 +36,18 @@ func load_level() -> void:
 				#d**dist_coeff in gravity equation instead of d**2 to customize gravity function profile
 				$objectManager.dist_coeff  = config.get_value(item, "dist_coeff")
 			"rocket":
-				$objectManager.loadPhysicsAttributesFromFile(config, item, $objectManager.rocket)
+				$objectManager.loadPhysicsAttributesFromFile(config, item, 0)
 			_:
-				$objectManager.loadPhysicsAttributesFromFile(config, item, null)
+				$objectManager.loadPhysicsAttributesFromFile(config, item, 1)
+
+
+func start_simulation():
+	phase = 1
+	$objectManager.start_movement()
+	$levelStartUI.disable_edit()
+	
+func restart_simulation():
+	phase = 0
+	$objectManager.deletePhysicsElements()
+	$levelStartUI.enable_edit()
+	load_level()
