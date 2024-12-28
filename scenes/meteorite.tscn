@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtfw3iwu4aemy"]
+[gd_scene load_steps=3 format=3 uid="uid://dtfw3iwu4aemy"]
 
 [ext_resource type="Script" path="res://scripts/meteorite.gd" id="1_5s2q6"]
 [ext_resource type="Texture2D" uid="uid://cvgij4jhsacxr" path="res://images/grey_meteorite.png" id="2_pmb1k"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_m7bq8"]
 
 [node name="meteorite" type="Node2D"]
 script = ExtResource("1_5s2q6")
@@ -14,5 +12,5 @@ script = ExtResource("1_5s2q6")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_pmb1k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_m7bq8")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(46, 7, 37, 17, 38, 21, 25, 37, 26, 42, 20, 47, 9, 49, 7, 47, -22, 43, -38, 26, -40, 25, -41, 27, -48, 12, -51, -4, -35, -32, -35, -35, -35, -35, -33, -37, -20, -42, -8, -40, -4, -42, -4, -46, -2, -47, 6, -47, 18, -49, 25, -49, 25, -46, 48, -14, 51, -5, 51, 0)
