@@ -7,7 +7,6 @@ var rot_dir = randi_range(0,1)*2-1 #1/-1 for clockwise/counterclockwise rotation
 func _ready() -> void:
 	pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !movement_enabled:
