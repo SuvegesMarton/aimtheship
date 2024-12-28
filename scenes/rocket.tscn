@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx1iq3jsbsw2b"]
+[gd_scene load_steps=4 format=3 uid="uid://bx1iq3jsbsw2b"]
 
 [ext_resource type="Script" path="res://scripts/rocket.gd" id="1_1exku"]
 [ext_resource type="Texture2D" uid="uid://lxi16ig0ryni" path="res://images/rocket.png" id="2_l6iya"]
+[ext_resource type="Script" path="res://scripts/rocket_collision.gd" id="2_v4i1t"]
 
 [node name="rocket" type="Node2D"]
 script = ExtResource("1_1exku")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_v4i1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 rotation = 0.785398
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("2_l6iya")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-4, -2)
+polygon = PackedVector2Array(-8, -6, -5, -7, -1, -7, 3, -5, 4, -4, 11, -4, 17, -3, 21, -1, 24, 2, 20, 5, 16, 7, 10, 8, 4, 8, 1, 10, -2, 11, -5, 11, -8, 10, -3, 9, -1, 7, -3, 6, -5, 6, -5, 3, -7, 2, -5, 1, -5, -2, -4, -2, -1, -3, -3, -5)

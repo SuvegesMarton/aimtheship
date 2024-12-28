@@ -7,6 +7,7 @@
 script = ExtResource("1_5s2q6")
 
 [node name="Area2D" type="Area2D" parent="."]
+monitoring = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 scale = Vector2(0.2, 0.2)
