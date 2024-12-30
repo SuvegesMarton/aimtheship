@@ -17,6 +17,11 @@ func _process(_delta: float) -> void:
 func update_velocity(delta: float) -> void:
 	if weight == 0:
 		return
+	forces = round_vector2(forces, 2) # reduce randomness
 	velocity.x += (forces.x / weight) * delta
 	velocity.y += (forces.y / weight) * delta
 	forces = Vector2.ZERO
+	
+func round_vector2(vec: Vector2, decimals: int) -> Vector2:
+	var factor = pow(10, decimals)
+	return Vector2(round(vec.x * factor) / factor, round(vec.y * factor) / factor)

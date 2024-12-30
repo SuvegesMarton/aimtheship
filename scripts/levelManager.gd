@@ -11,8 +11,7 @@ var phase = 0
 func _ready() -> void:
 	load_level()
 	$levelStartUI/button.connect("go_button_pressed", start_simulation)
-	$levelStartUI/button.connect("retry_button_pressed", restart_simulation)
-	
+	$levelStartUI/button.connect("retry_button_pressed", retry_simulation)	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -37,6 +36,8 @@ func load_level() -> void:
 				$objectManager.dist_coeff  = config.get_value(item, "dist_coeff")
 			"rocket":
 				$objectManager.loadPhysicsAttributesFromFile(config, item, 0)
+			"ep":
+				$objectManager.loadPhysicsAttributesFromFile(config, item, 2)
 			_:
 				$objectManager.loadPhysicsAttributesFromFile(config, item, 1)
 
@@ -46,8 +47,11 @@ func start_simulation():
 	$objectManager.start_movement()
 	$levelStartUI.disable_edit()
 	
-func restart_simulation():
+func retry_simulation():
 	phase = 0
 	$objectManager.deletePhysicsElements()
 	$levelStartUI.enable_edit()
 	load_level()
+
+func rocket_collision(body):
+	print("collision: ", body)
