@@ -80,7 +80,11 @@ func calculateGravityForce(outer: Node2D, inner: Node2D) -> Vector2:
 	return direction.normalized() * forceMagnitude
 	
 func rocket_collision(body):
-	print("collision: ", body)
+	match body.object_type:
+		1:
+			print("meteorite collision: ", body)
+		2:
+			print("endpoint collision: ", body)
 	
 	
 	
